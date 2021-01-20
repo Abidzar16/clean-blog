@@ -1,12 +1,10 @@
-# [Start Bootstrap - Clean Blog](https://startbootstrap.com/themes/clean-blog/)
+# Personal Blog Portfolio
 
-[Clean Blog](https://startbootstrap.com/themes/clean-blog/) is a stylish, responsive blog theme for [Bootstrap](https://getbootstrap.com/) created by [Start Bootstrap](https://startbootstrap.com/). This theme features a blog homepage, about page, contact page, and an example post page along with a working PHP contact form.
+This repository contains source code of my blog portfolio using MEN (MongoDB, Express.js, and Node.js) stack based on "Beginning Node.js, Express & MongoDB Development" by Greg Lim
 
 ## Preview
 
-[![Clean Blog Preview](https://startbootstrap.com/assets/img/screenshots/themes/clean-blog.png)](https://startbootstrap.github.io/startbootstrap-clean-blog/)
-
-**[View Live Preview](https://startbootstrap.github.io/startbootstrap-clean-blog/)**
+**[View Live Preview](https://portfolio-blog-abi.herokuapp.com/)**
 
 ## Status
 
