@@ -15,10 +15,14 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
             <h1><%= blogpost.title %></h1>
-            <%- blogpost.body %>
             <span class="meta">Posted by
               <a href="#"><%= blogpost.userid.username %></a>
               on <%= blogpost.datePosted.toDateString() %></span>
+              <% if(loggedIn) { %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/posts/delete" value=<%= blogpost._id%>>Delete Post</a>
+                </li>
+              <% } %>
           </div>
         </div>
       </div>

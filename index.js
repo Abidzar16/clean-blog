@@ -1,29 +1,37 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
-const app = new express();
+const expressSession = require("express-session");
 const bodyParser = require("body-parser");
-const newPostController = require("./controllers/newPost");
+const flash = require("connect-flash");
+
 const validateMiddleware = require("./middleware/validateMiddleware");
+const redirectIfAuthenticatedMiddleware = require("./middleware/redirectIfAuthenticatedMiddleware");
+const authMiddleware = require("./middleware/authMiddleware");
+
 const homeController = require("./controllers/home");
+
 const storePostController = require("./controllers/storePost");
 const getPostController = require("./controllers/getPost");
+const newPostController = require("./controllers/newPost");
+const deletePostController = require("./controllers/deletePost");
+
 const newUserController = require("./controllers/newUser");
 const storeUserController = require("./controllers/storeUser");
 const loginController = require("./controllers/login");
 const loginUserController = require("./controllers/loginUser");
-const expressSession = require("express-session");
-const authMiddleware = require("./middleware/authMiddleware");
-const redirectIfAuthenticatedMiddleware = require("./middleware/redirectIfAuthenticatedMiddleware");
 const logoutController = require("./controllers/logout");
-const flash = require("connect-flash");
+
 let port = process.env.PORT;
+const app = new express();
 
 require("dotenv").config();
 
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true });
 
 global.loggedIn = null;
+
+const app = new express();
 
 if (port == null || port == "") {
   port = 4000;
@@ -50,12 +58,12 @@ app.use("*", (req, res, next) => {
 });
 app.use(flash());
 
-app.get("/", homeController);
 
+app.get("/", homeController);
 app.get("/post/:id", getPostController);
 app.get("/posts/new", authMiddleware, newPostController);
 app.post("/posts/store", authMiddleware, storePostController);
-
+app.delete("/posts/delete", authMiddleware, deletePostController);
 app.get("/auth/login", redirectIfAuthenticatedMiddleware, loginController);
 app.get("/auth/register", redirectIfAuthenticatedMiddleware, newUserController);
 app.post(
